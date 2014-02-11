@@ -25,32 +25,53 @@ require ("functions.php");
                     </thead>
                     <tbody>
   <?php
-while($res=mysql_fetch_array($sql)) {
-	$id = $res[0];
-	$codigo = $res[1];
-	$produto = $res[2];
-	$descricao = $res[3];
-	$estoque = $res[4];
-	$codigo_original = $res[5];
-	$codigo_paralelo = $res[6];
-	$preco = $res[7];
-	$promocao = $res[8];
-	$i++;
-	$css = ($i % 2 == 0) ? 'style="background: #FFF;"' : 'style="background: #e7e7e7;"';
-?>
+  // Vamos coloca a busca por produtos aqui
+  $sql = mysql_query("SELECT * FROM produtos ORDER BY id DESC LIMIT 10");
 
-<tr <?php echo $css ?>> 
-	<td class=centro><?php echo $codigo; ?> </td>
-	<td class=centro><?php echo $produto; ?></td>
-  <td class=esquerda><?php echo $descricao; ?></td>
-  <td class=centro><?php echo formata_dinheiro($preco); ?></td>
-</tr>
-<?php
-}
+  $count = mysql_num_rows($sql);
+
+  if($count) {
+
+    while($res=mysql_fetch_array($sql)) {
+    	$id = $res[0];
+    	$codigo = $res[1];
+    	$produto = $res[2];
+    	$descricao = $res[3];
+    	$estoque = $res[4];
+    	$codigo_original = $res[5];
+    	$codigo_paralelo = $res[6];
+    	$preco = $res[7];
+    	$promocao = $res[8];
+    	$i++;
+    	$css = ($i % 2 == 0) ? 'style="background: #FFF;"' : 'style="background: #e7e7e7;"';
+    ?>
+
+    <tr <?php echo $css ?> > 
+    	<td class=centro><?php echo $codigo; ?> </td>
+    	<td class=centro><?php echo $produto; ?></td>
+      <td class=esquerda><?php echo $descricao; ?></td>
+      <td class=centro><?php echo formata_dinheiro($preco); ?></td>
+    </tr>
+    <?php
+    }
+
+  }
+
 ?>
 
                     </tbody>
                   </table>
+
+<?php
+
+  // Aqui iremos mostrar a mensagem de nenhum produto encontrado
+  if(!$count) {
+    echo "Nenhum produto encontrado";
+  }
+
+?>
+
+
                 </div>
                 <div class="text-right">
                   <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
