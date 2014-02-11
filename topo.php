@@ -1,18 +1,33 @@
 <?php include"conexao/config.php";
-$conexao = mysql_connect("$local", "$usuario", "$senha")
-           or die(mysql_error());
-$db = mysql_select_db("$selecione")
-           or die (mysql_error());
+
+    $conexao = mysql_connect("$local", "$usuario", "$senha");
+    
+    if(!$conexao) {
+        echo "Nao foi possivel se conectar ao banco de dados, favor verificar o arquivo conexao/config.php";
+        exit();
+    }
+    
+    $db = mysql_select_db("$selecione");
+    
+    if(!$db) {
+        echo "Nao foi possivel selecionar o banco de dados, favor verificar o arquivo conexao/config.php";
+        exit();
+    }
+
 ?>
+
 <?php
-$sql = mysql_query("SELECT codigo, produto, descricao, estoque, codigo_original, codigo_paralelo, preco, promocao, foto 
-				   FROM produtos
-				   ORDER BY produto,descricao ASC
-				   LIMIT 10")
-       or die(mysql_error());
-if (@mysql_num_rows($sql) == 0) {
-	echo "<h1>Nenhum resultado encontrato</h1>";
-}
+
+    $sql = mysql_query("SELECT codigo, produto, descricao, estoque, codigo_original, codigo_paralelo, preco, promocao, foto 
+                       FROM produtos
+                       ORDER BY produto,descricao ASC
+                       LIMIT 10")
+           or die(mysql_error());
+
+    if (@mysql_num_rows($sql) == 0) {
+        echo "<h1>Nenhum resultado encontrato</h1>";
+    }
+
 ?>
 
 <?php
