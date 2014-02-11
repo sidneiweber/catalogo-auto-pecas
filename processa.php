@@ -7,10 +7,7 @@
 	//INICIAR A CLASS
 
 	class shopping{	
-		//private $banco = 'blautopeca_1';	
-		//private $senha = 'branco@sidnei';	
-		//private $login = 'blautopeca_1';	
-		//private $hostname = 'dbmy0051.whservidor.com';
+
 		private $banco = 'catalogo';	
 		private $senha = 'bolacha';
 		private $login = 'root';	

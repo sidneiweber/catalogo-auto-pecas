@@ -1,4 +1,6 @@
-<?php include"conexao/config.php";
+<?php 
+
+    require_once("conexao/config.php");
 
     $conexao = mysql_connect("$local", "$usuario", "$senha");
     
