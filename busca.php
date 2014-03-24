@@ -1,5 +1,5 @@
 <?php require("topo.php");
-	require ("functions.php");
+  require ("functions.php");
 ?>
 
 <?php
@@ -87,24 +87,24 @@ echo "<p>Resultados ".min($total, ($inicio + 1))." - ".min($total, ($inicio + $_
 // <p>Resultados 1 - 20 de 138 resultados encontrados para 'minha busca'</p>
 // ============================================
 while($resultado = mysql_fetch_assoc($query)) {
-	$id = $resultado['id'];
-	$codigo = $resultado['codigo'];
-	$produto = $resultado['produto'];
-	$descricao = $resultado['descricao'];
-	$estoque = $resultado['estoque'];
-	$codigo_original = $resultado['codigo_original'];
-	$codigo_paralelo = $resultado['codigo_paralelo'];
-	$preco = $resultado['preco'];
-	$promocao = $resultado['promocao'];
-	$foto = $resultado['foto'];
-	$i++;
-	$css = ($i % 2 == 0) ? 'style="background: #FFF;"' : 'style="background: #e7e7e7;"';
+  $id = $resultado['id'];
+  $codigo = $resultado['codigo'];
+  $produto = $resultado['produto'];
+  $descricao = $resultado['descricao'];
+  $estoque = $resultado['estoque'];
+  $codigo_original = $resultado['codigo_original'];
+  $codigo_paralelo = $resultado['codigo_paralelo'];
+  $preco = $resultado['preco'];
+  $promocao = $resultado['promocao'];
+  $foto = $resultado['foto'];
+  $i++;
+  $css = ($i % 2 == 0) ? 'style="background: #FFF;"' : 'style="background: #e7e7e7;"';
 ?>
 </div>
 <tr <?php echo $css ?>>
-	<td><a class="thumbnail" href="#thumb"><img width="24" height="24" src="fotos/<?php echo $foto; ?>"/><span><img src="fotos/<?php echo $foto; ?>"/><br /><?php echo $descricao; ?></span></a></td>
-	<td><?php echo $codigo; ?> </td>
-	<td><?php echo $produto; ?></td>
+  <td><a class="thumbnail" href="#thumb"><img width="24" height="24" src="fotos/<?php echo $foto; ?>"/><span><img src="fotos/<?php echo $foto; ?>"/><br /><?php echo $descricao; ?></span></a></td>
+  <td><?php echo $codigo; ?> </td>
+  <td><?php echo $produto; ?></td>
     <td><?php echo $descricao; ?></td>
 <!--    <td class=centro><?php echo $estoque; ?></td>-->
     <td><?php echo $codigo_original; ?></td>
@@ -112,9 +112,9 @@ while($resultado = mysql_fetch_assoc($query)) {
     <td width="70px"><?php echo formata_dinheiro($preco); ?></td>
     <td width="70px"><?php echo $promocao; ?></td>
     <td width="110px"><a href="alterar.php?id=<?php echo $id ?>"><img src=images/editar.png width="24" height="24"/></a>
-       				<a href="alterar_foto.php?id=<?php echo $id ?>"><img src=images/foto.png width="24" height="24"/></a>
-				    <!--td class=centro><a href="processa.php?add=<?php echo $id ?>" rel="gb_page_center[640, 480]"><img src=images/cesta.png width="24" height="24" /></a></td-->
-    				<a href="carrinho_inserir_dados.php?add=<?php echo $id ?>" rel="gb_page_center[800,200]"><img src=images/cesta.png width="24" height="24" /></a>
+              <a href="alterar_foto.php?id=<?php echo $id ?>"><img src=images/foto.png width="24" height="24"/></a>
+            <!--td class=centro><a href="processa.php?add=<?php echo $id ?>" rel="gb_page_center[640, 480]"><img src=images/cesta.png width="24" height="24" /></a></td-->
+            <a class='iframe' href="carrinho_inserir_dados.php?add=<?php echo $id ?>"><img src=images/cesta.png width="24" height="24" /></a>
             <a href = "produto_remover_db.php?id=<?php echo $id ?>" onclick="return confirm('Confirmar exclusão de registro?');"><img src = "images/excluir.png" alt ="Remover" width="20px" height="20px"/></a>
                     <!-- <a href="fotos/<?php echo $foto; ?>" rel="lightbox"><img src="fotos/<?php echo $foto; ?>" width="24" height="24" /></a>-->
 </tr>
@@ -140,9 +140,6 @@ echo '<a href="?consulta='.$_GET['consulta'].'&pagina='.$n.'">'.$n.'</a>&nbsp;&n
 </li>
 </ul>
                 </div>
-                <div class="text-right">
-                  <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
-                </div>
               </div>
             </div><!-- /.row -->
       </div><!-- /#page-wrapper -->
@@ -157,6 +154,40 @@ echo '<a href="?consulta='.$_GET['consulta'].'&pagina='.$n.'">'.$n.'</a>&nbsp;&n
     <script src="js/morris/chart-data-morris.js"></script>
     <script src="js/tablesorter/jquery.tablesorter.js"></script>
     <script src="js/tablesorter/tables.js"></script>
+
+    <!-- MODAL -->
+<script src="js/jquery.colorbox.js"></script>
+<script>
+     $(document).ready(function(){
+       //Examples of how to assign the Colorbox event to elements
+       $(".group1").colorbox({rel:'group1'});
+       $(".group2").colorbox({rel:'group2', transition:"fade"});
+       $(".group3").colorbox({rel:'group3', transition:"none", width:"75%", height:"75%"});
+       $(".group4").colorbox({rel:'group4', slideshow:true});
+       $(".ajax").colorbox();
+       $(".youtube").colorbox({iframe:true, innerWidth:640, innerHeight:390});
+       $(".vimeo").colorbox({iframe:true, innerWidth:500, innerHeight:409});
+       $(".iframe").colorbox({iframe:true, width:"50%", height:"50%"});
+       $(".inline").colorbox({inline:true, width:"50%"});
+       $(".callbacks").colorbox({
+         onOpen:function(){ alert('onOpen: colorbox is about to open'); },
+         onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
+         onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
+         onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
+         onClosed:function(){ alert('onClosed: colorbox has completely closed'); }
+       });
+
+       $('.non-retina').colorbox({rel:'group5', transition:'none'})
+       $('.retina').colorbox({rel:'group5', transition:'none', retinaImage:true, retinaUrl:true});
+       
+       //Example of preserving a JavaScript event for inline calls.
+       $("#click").click(function(){ 
+         $('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+         return false;
+       });
+     });
+   </script>
+<!-- FIM MODAL -->
 
   </body>
 </html>
