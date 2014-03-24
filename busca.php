@@ -158,22 +158,5 @@ echo '<a href="?consulta='.$_GET['consulta'].'&pagina='.$n.'">'.$n.'</a>&nbsp;&n
     <script src="js/tablesorter/jquery.tablesorter.js"></script>
     <script src="js/tablesorter/tables.js"></script>
 
-    <!--Funcao modal adicionar produtos -->
-    <script type="text/javascript">
-    var GB_ROOT_DIR = "./greybox/";
-    </script>
-
-    <!--<script type="text/javascript" src="greybox/AJS.js"></script>
-    <script>
-    // Code that uses other library's $ can follow here.
-	var $jq = jQuery.noConflict();
-    </script>
-    <script type="text/javascript" src="greybox/AJS_fx.js"></script>
-    <script type="text/javascript" src="greybox/gb_scripts.js"></script>
-    <script src="tooltip/jquery.js" type="text/javascript"></script>
-    <script src="tooltip/main.js" type="text/javascript"></script>
-    <link href="greybox/gb_styles.css" rel="stylesheet" type="text/css" media="all" />
-    <!--FIM MODAL ADICIONAR PRODUTOS -->
-
   </body>
 </html>
