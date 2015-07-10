@@ -1,5 +1,15 @@
-@import url("//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700");
-*	{
-	font-family: "Open Sans", Calibri, Candara, Arial, sans-serif;
-	font-size: 12px;
-	}
+.invoice-title h2, .invoice-title h3 {
+    display: inline-block;
+}
+
+.table > tbody > tr > .no-line {
+    border-top: none;
+}
+
+.table > thead > tr > .no-line {
+    border-bottom: none;
+}
+
+.table > tbody > tr > .thick-line {
+    border-top: 2px solid;
+}
