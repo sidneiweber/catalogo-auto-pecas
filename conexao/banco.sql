@@ -1,158 +1,196 @@
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+-- phpMyAdmin SQL Dump
+-- version 4.2.6deb1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: 02-Out-2015 às 12:19
+-- Versão do servidor: 5.5.44-0ubuntu0.14.10.1
+-- PHP Version: 5.5.12-2ubuntu4.6
 
-DROP SCHEMA IF EXISTS `catalogo` ;
-CREATE SCHEMA IF NOT EXISTS `catalogo` DEFAULT CHARACTER SET latin1 ;
-USE `catalogo` ;
-
--- -----------------------------------------------------
--- Table `catalogo`.`clientes`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `catalogo`.`clientes` ;
-
-CREATE  TABLE IF NOT EXISTS `catalogo`.`clientes` (
-  `idCliente` INT(11) NOT NULL AUTO_INCREMENT ,
-  `nome` VARCHAR(500) NOT NULL ,
-  `endereco` VARCHAR(200) NOT NULL ,
-  `bairro` VARCHAR(100) NOT NULL ,
-  `cidade` VARCHAR(100) NOT NULL ,
-  `uf` VARCHAR(25) NOT NULL ,
-  `cpf_cnpj` VARCHAR(40) NOT NULL ,
-  `telefone` VARCHAR(25) NOT NULL ,
-  `fax` VARCHAR(25) NOT NULL ,
-  PRIMARY KEY (`idCliente`) )
-ENGINE = InnoDB
-AUTO_INCREMENT = 53
-DEFAULT CHARACTER SET = latin1;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
--- -----------------------------------------------------
--- Table `catalogo`.`contas_pagar`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `catalogo`.`contas_pagar` ;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
-CREATE  TABLE IF NOT EXISTS `catalogo`.`contas_pagar` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `fornecedor` TEXT NOT NULL ,
-  `numero_documento` TEXT NOT NULL ,
-  `data` DATE NOT NULL ,
-  `valor` TEXT NOT NULL ,
-  `status` TEXT NOT NULL ,
-  PRIMARY KEY (`id`) ,
-  INDEX `data` (`data` ASC) )
-ENGINE = InnoDB
-AUTO_INCREMENT = 43
-DEFAULT CHARACTER SET = latin1;
+--
+-- Database: `catalogo`
+--
+CREATE DATABASE IF NOT EXISTS `catalogo` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `catalogo`;
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `catalogo`.`orcamento`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `catalogo`.`orcamento` ;
+--
+-- Estrutura da tabela `clientes`
+--
 
-CREATE  TABLE IF NOT EXISTS `catalogo`.`orcamento` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT ,
-  `idProduto` INT(11) NOT NULL ,
-  `idOrcamento` INT(11) NOT NULL ,
-  `idCliente` INT(11) NOT NULL ,
-  `preco` FLOAT NOT NULL ,
-  `quantidade` INT(11) NOT NULL ,
-  `dataHora` DATETIME NOT NULL ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB
-AUTO_INCREMENT = 4446
-DEFAULT CHARACTER SET = latin1;
+DROP TABLE IF EXISTS `clientes`;
+CREATE TABLE IF NOT EXISTS `clientes` (
+`idCliente` int(11) NOT NULL,
+  `nome` varchar(500) NOT NULL,
+  `endereco` varchar(200) NOT NULL,
+  `bairro` varchar(100) NOT NULL,
+  `cidade` varchar(100) NOT NULL,
+  `uf` varchar(25) NOT NULL,
+  `cpf_cnpj` varchar(40) NOT NULL,
+  `telefone` varchar(25) NOT NULL,
+  `fax` varchar(25) NOT NULL
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=191 ;
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `catalogo`.`produtos`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `catalogo`.`produtos` ;
+--
+-- Estrutura da tabela `contas_pagar`
+--
 
-CREATE  TABLE IF NOT EXISTS `catalogo`.`produtos` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `codigo` TEXT NULL DEFAULT NULL ,
-  `produto` TEXT NULL DEFAULT NULL ,
-  `descricao` TEXT NULL DEFAULT NULL ,
-  `estoque` TEXT NULL DEFAULT NULL ,
-  `codigo_original` TEXT NULL DEFAULT NULL ,
-  `codigo_paralelo` TEXT NULL DEFAULT NULL ,
-  `preco` TEXT NULL DEFAULT NULL ,
-  `promocao` TEXT NULL DEFAULT NULL ,
-  `foto` TEXT NULL DEFAULT NULL ,
-  `pasta` TEXT NULL DEFAULT NULL ,
-  `custo` TEXT NULL DEFAULT NULL ,
-  `ultimo_fornecedor` TEXT NULL DEFAULT NULL ,
-  PRIMARY KEY (`id`) ,
-  FULLTEXT INDEX `pesquisa` (`produto` ASC, `descricao` ASC) ,
-  FULLTEXT INDEX `pesquisa2` (`produto` ASC, `descricao` ASC) ,
-  FULLTEXT INDEX `pesquisa_final` (`produto` ASC, `descricao` ASC) ,
-  FULLTEXT INDEX `indice_pesquisa` (`codigo` ASC, `produto` ASC, `descricao` ASC, `codigo_original` ASC, `codigo_paralelo` ASC) ,
-  FULLTEXT INDEX `codigo` (`codigo` ASC, `produto` ASC, `descricao` ASC, `codigo_original` ASC, `codigo_paralelo` ASC) )
-ENGINE = InnoDB
-AUTO_INCREMENT = 40584
-DEFAULT CHARACTER SET = latin1;
+DROP TABLE IF EXISTS `contas_pagar`;
+CREATE TABLE IF NOT EXISTS `contas_pagar` (
+`id` int(11) NOT NULL,
+  `fornecedor` text NOT NULL,
+  `numero_documento` text NOT NULL,
+  `data` date NOT NULL,
+  `valor` text NOT NULL,
+  `status` text NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4495 ;
 
+-- --------------------------------------------------------
 
--- -----------------------------------------------------
--- Table `catalogo`.`usuarios`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `catalogo`.`usuarios` ;
+--
+-- Estrutura da tabela `orcamento`
+--
 
-CREATE  TABLE IF NOT EXISTS `catalogo`.`usuarios` (
-  `id` INT(10) NOT NULL AUTO_INCREMENT ,
-  `nome` VARCHAR(100) NOT NULL ,
-  `usuario` VARCHAR(50) NOT NULL ,
-  `senha` VARCHAR(50) NOT NULL ,
-  PRIMARY KEY (`id`) ,
-  UNIQUE INDEX `usuario` (`usuario` ASC) )
-ENGINE = InnoDB
-AUTO_INCREMENT = 2
-DEFAULT CHARACTER SET = latin1;
+DROP TABLE IF EXISTS `orcamento`;
+CREATE TABLE IF NOT EXISTS `orcamento` (
+`id` int(11) NOT NULL,
+  `idProduto` int(11) NOT NULL,
+  `idOrcamento` int(11) NOT NULL,
+  `idCliente` int(11) NOT NULL,
+  `preco` float NOT NULL,
+  `quantidade` float NOT NULL,
+  `dataHora` datetime NOT NULL
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19553 ;
 
+--
+-- Acionadores `orcamento`
+--
+DROP TRIGGER IF EXISTS `atualizaEstoqueDevolucao`;
+DELIMITER //
+CREATE TRIGGER `atualizaEstoqueDevolucao` BEFORE DELETE ON `orcamento`
+ FOR EACH ROW UPDATE produtos SET estoque = estoque + OLD.quantidade WHERE id = OLD.idProduto
+//
+DELIMITER ;
+DROP TRIGGER IF EXISTS `atualizaQuantidadeProduto`;
+DELIMITER //
+CREATE TRIGGER `atualizaQuantidadeProduto` BEFORE INSERT ON `orcamento`
+ FOR EACH ROW UPDATE produtos SET estoque = estoque - NEW.quantidade WHERE id = NEW.idProduto
+//
+DELIMITER ;
 
--- -----------------------------------------------------
--- Table `catalogo`.`prevenda`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `catalogo`.`prevenda` ;
+-- --------------------------------------------------------
 
-CREATE  TABLE IF NOT EXISTS `catalogo`.`prevenda` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `finalizada` TINYINT(1) NOT NULL DEFAULT false ,
-  `data_inclusao` DATETIME NOT NULL ,
-  `data_finalizacao` DATETIME NOT NULL ,
-  PRIMARY KEY (`id`) )
-ENGINE = InnoDB;
+--
+-- Estrutura da tabela `produtos`
+--
 
+DROP TABLE IF EXISTS `produtos`;
+CREATE TABLE IF NOT EXISTS `produtos` (
+`id` int(11) NOT NULL,
+  `codigo` text,
+  `produto` text,
+  `descricao` text,
+  `estoque` text,
+  `codigo_original` text,
+  `codigo_paralelo` text,
+  `ncm` text,
+  `preco` text,
+  `promocao` text,
+  `foto` text,
+  `pasta` text,
+  `custo` text,
+  `ultimo_fornecedor` text
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40975 ;
 
--- -----------------------------------------------------
--- Table `catalogo`.`vendaItens`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `catalogo`.`vendaItens` ;
+-- --------------------------------------------------------
 
-CREATE  TABLE IF NOT EXISTS `catalogo`.`vendaItens` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `produtos_id` INT NOT NULL ,
-  `prevenda_id` INT NOT NULL ,
-  PRIMARY KEY (`id`, `produtos_id`, `prevenda_id`) ,
-  INDEX `fk_vendaItens_produtos_idx` (`produtos_id` ASC) ,
-  INDEX `fk_vendaItens_prevenda1_idx` (`prevenda_id` ASC) ,
-  CONSTRAINT `fk_vendaItens_produtos`
-    FOREIGN KEY (`produtos_id` )
-    REFERENCES `catalogo`.`produtos` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_vendaItens_prevenda1`
-    FOREIGN KEY (`prevenda_id` )
-    REFERENCES `catalogo`.`prevenda` (`id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+--
+-- Estrutura da tabela `usuarios`
+--
 
-USE `catalogo` ;
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE IF NOT EXISTS `usuarios` (
+`id` int(10) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `usuario` varchar(50) NOT NULL,
+  `senha` varchar(50) NOT NULL
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
+--
+-- Indexes for dumped tables
+--
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+--
+-- Indexes for table `clientes`
+--
+ALTER TABLE `clientes`
+ ADD PRIMARY KEY (`idCliente`);
+
+--
+-- Indexes for table `contas_pagar`
+--
+ALTER TABLE `contas_pagar`
+ ADD PRIMARY KEY (`id`), ADD KEY `data` (`data`);
+
+--
+-- Indexes for table `orcamento`
+--
+ALTER TABLE `orcamento`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `produtos`
+--
+ALTER TABLE `produtos`
+ ADD PRIMARY KEY (`id`), ADD FULLTEXT KEY `pesquisa` (`produto`,`descricao`), ADD FULLTEXT KEY `pesquisa2` (`produto`,`descricao`), ADD FULLTEXT KEY `pesquisa_final` (`produto`,`descricao`), ADD FULLTEXT KEY `indice_pesquisa` (`codigo`,`produto`,`descricao`,`codigo_original`,`codigo_paralelo`), ADD FULLTEXT KEY `codigo` (`codigo`,`produto`,`descricao`,`codigo_original`,`codigo_paralelo`);
+
+--
+-- Indexes for table `usuarios`
+--
+ALTER TABLE `usuarios`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `usuario` (`usuario`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `clientes`
+--
+ALTER TABLE `clientes`
+MODIFY `idCliente` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=191;
+--
+-- AUTO_INCREMENT for table `contas_pagar`
+--
+ALTER TABLE `contas_pagar`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4495;
+--
+-- AUTO_INCREMENT for table `orcamento`
+--
+ALTER TABLE `orcamento`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19553;
+--
+-- AUTO_INCREMENT for table `produtos`
+--
+ALTER TABLE `produtos`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=40975;
+--
+-- AUTO_INCREMENT for table `usuarios`
+--
+ALTER TABLE `usuarios`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
