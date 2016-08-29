@@ -1,5 +1,7 @@
 <?php require("topo.php");
 require ("functions.php");
+require ("js/function.js");
+require  ("pag.php")
 ?>
 
 <div class="row">
@@ -73,7 +75,7 @@ $_UP['errors'][2] = 'O tamanho da imagem e maior que o permitido';
 $_UP['errors'][3] = 'As extensões permitidas para o envio do arquivo são: jpg, png e gif';
 $_UP['errors'][4] = 'Não foi feito o upload de sua foto, já existia outra com o mesmo nome';
 
-if ($_FILES['arquivo']['errors'] != 0) {
+if ($_FILES['arquivo']['error'] != 0) {
  die("Não foi possivel enviar sua imagem o erro foi:" . $_UP['errors'][$_FILES['arquivo']['errors']]);
  exit;
 }
@@ -100,7 +102,7 @@ if ($tam_name[0] >= '801') {
  echo "A imagem deve ter a largura menor ou igual a 800px";
 }
 
-if ($tam_name[1] >= '601') {
+elseif ($tam_name[1] >= '601') {
  echo "A imagem deve ter a altura menor ou igual a 600px";
 }else
 
@@ -125,10 +127,6 @@ if (move_uploaded_file($_FILES['arquivo']['tmp_name'], $_UP['pasta'] . $nome_fin
 }
 }
 
-if ($retorno == 0){
- echo "$retorno";
-}else{
-}
 }
 ?>
 
@@ -142,7 +140,7 @@ if ($retorno == 0){
 
 <div class="form-group">
     <label for="codigo">Código</label>
-    <input type="text" required value="" name="codigo" title="Preencha com o codigo do produto." class="form-control input-sm" id="codigo" placeholder="Código do Produto">
+    <input type="text" required value="" onkeypress="return number(event);" name="codigo" title="Preencha com o codigo do produto." class="form-control input-sm" id="codigo" placeholder="Código do Produto">
 </div>
 
 <div class="form-group">
@@ -157,22 +155,22 @@ if ($retorno == 0){
 
 <div class="form-group">
     <label for="estoque">Estoque</label>
-    <input type="text" name="estoque" class="form-control input-sm" id="estoque" placeholder="Quantidade em estoque">
+    <input type="text" name="estoque" onkeypress="return number(event);" class="form-control input-sm" id="estoque" placeholder="Quantidade em estoque">
 </div>
 
 <div class="form-group">
     <label for="codigo_original">Código Original</label>
-    <input type="text" name="codigo_original" class="form-control input-sm" id="codigo_original" placeholder="Código Original do Produto">
+    <input type="text" onkeypress="return number(event);" name="codigo_original" class="form-control input-sm" id="codigo_original" placeholder="Código Original do Produto">
 </div>
 
 <div class="form-group">
     <label for="codigo_paralelo">Código Paralelo</label>
-    <input type="text" name="codigo_paralelo" class="form-control input-sm" id="codigo_paralelo" placeholder="Código Paralelo do Produto">
+    <input onkeypress="return number(event);" type="text" name="codigo_paralelo" class="form-control input-sm" id="codigo_paralelo" placeholder="Código Paralelo do Produto">
 </div>
 
 <div class="form-group">
     <label for="preco">Preço</label>
-    <input type="text" required value="" name="preco" title="Preencha com o preço do produto." class="form-control input-sm" id="Preço" placeholder="Preço do Produto">
+    <input type="text" onkeypress="return number(event);" required value="" name="preco" title="Preencha com o preço do produto." class="form-control input-sm" id="Preço" placeholder="Preço do Produto">
 </div>
 
 <div class="form-group">
@@ -182,7 +180,7 @@ if ($retorno == 0){
 
 <div class="form-group">
     <label for="custo">Custo</label>
-    <input type="text" name="custo" class="form-control input-sm" id="custo" placeholder="Custo do produto">
+    <input type="text" onkeypress="return number(event);" name="custo" class="form-control input-sm" id="custo" placeholder="Custo do produto">
 </div>
 
 <div class="form-group">

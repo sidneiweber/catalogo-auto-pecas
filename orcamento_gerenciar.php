@@ -1,7 +1,8 @@
 <?php require("topo.php");
 require ("functions.php");
+require ("pag.php");
 
-$sql = mysql_query("SELECT A.nome, B.idOrcamento,dataHora FROM clientes A INNER JOIN orcamento B on A.idCliente = B.idCliente group by B.idOrcamento ORDER BY B.idOrcamento desc LIMIT 50");
+$sql = mysql_query("SELECT * FROM orcamento ORDER BY  id");
 $count = mysql_num_rows($sql);
 ?>
 
@@ -30,9 +31,11 @@ $count = mysql_num_rows($sql);
 
 <?php
 	while($res=mysql_fetch_array($sql)) {	
+	    $i= 0;
 		$id = $res[1];	
 		$nome = $res[0];
-		$dataHora = $res[2];	
+		$dataHora = $res[6];
+   
 	
 		$i++;		
 		$css = ($i % 2 == 0) ? 'style="background: #CCC;"' : 'style="background: #e7e7e7;"';

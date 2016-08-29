@@ -1,11 +1,14 @@
 <?php require("topo.php");
 require ("functions.php");
+require ("pag.php");
 ?>
 
 <?php
-$sql = mysql_query("SELECT fornecedor, numero_documento, data, valor, status
-				   FROM contas_pagar
-				   ORDER BY fornecedor ASC")
+$sql = mysql_query("SELECT * FROM contas_pagar ORDER BY  fornecedor")
+				   
+				   
+				   
+				   
        or die(mysql_error());
 if (@mysql_num_rows($sql) == 0) {
 	echo "<h1>Nenhum resultado encontrato</h1>";
@@ -55,6 +58,7 @@ $count = mysql_num_rows($sql);
                     <tbody>
 <?php
 while($res=mysql_fetch_array($sql)) {
+	$i=0;
 	$id = $res[0];
 	$fornecedor = $res[1];
 	$numero_documento = $res[2];
@@ -70,15 +74,14 @@ while($res=mysql_fetch_array($sql)) {
 	$qr=mysql_query("SELECT SUM(valor) as total FROM contas_pagar WHERE data='$hoje'");
 	$row=mysql_fetch_array($qr);
 	$saidas_dia=$row['total'];
-
 	$despesas_dia=$hoje;
 ?>
 
-<tr <?php echo $css ?>> 
+<tr <?php echo $css ?> > 
 	<td><?php echo $fornecedor; ?> </td>
 	<td><?php echo $numero_documento; ?></td>
     <td><?php echo $data; ?></td>
-    <td><?php echo formata_dinheiro($valor); ?></td>
+    <td><?php echo ($valor); ?></td>
     <td>
 <?php
 
@@ -96,13 +99,14 @@ endif;
 </tr>
 <?php
 }
+
 ?>
 
                     </tbody>
                   </table>
                 </div>
                 <div class="text-right">
-                <span style="font-size:18px; color:#F00">Total do dia: <?php echo formata_dinheiro($saidas_dia)?></span>
+              
                   <!-- <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a> -->
                 </div>
               </div>
@@ -129,10 +133,6 @@ endif;
 
                     </tbody>
                   </table>
-                </div>
-                <div class="text-right">
-                	<br>
-                  <a href="boleto_amanha.php"><b>Boletos para amanha</b></a><br>
                 </div>
               </div>
             </div>
