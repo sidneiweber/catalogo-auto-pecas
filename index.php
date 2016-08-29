@@ -1,6 +1,5 @@
 <?php require("topo.php");
 require ("functions.php");
-require ("pag.php");
 ?>
 
         <div class="row">
@@ -34,7 +33,6 @@ require ("pag.php");
   if($count) {
 
     while($res=mysql_fetch_array($sql)) {
-		$i=0;
     	$id = $res[0];
     	$codigo = $res[1];
     	$produto = $res[2];

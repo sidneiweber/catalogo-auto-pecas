@@ -1,6 +1,5 @@
 <?php require("topo.php");
 require ("functions.php");
-require ("pag.php");
 
 $sql = mysql_query("SELECT * FROM clientes ORDER BY nome");
 $count = mysql_num_rows($sql);

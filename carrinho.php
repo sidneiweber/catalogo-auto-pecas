@@ -1,10 +1,11 @@
 <?php require("topo.php");
 require ("functions.php");
-require ('processa.php');
-require("pag.php");
+
+require 'processa.php';
 $conecta = new shopping();
 $conecta->conexao();
 ?>
+
 <?php
 
 $sql = mysql_query("SELECT * FROM produtos ORDER BY id DESC LIMIT 10");

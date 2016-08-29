@@ -1,6 +1,5 @@
 <?php require("topo.php");
 require ("functions.php");
-require ("pag.php");
 
 $id=$_GET['id'];
 
