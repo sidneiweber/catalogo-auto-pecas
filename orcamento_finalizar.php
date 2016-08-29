@@ -1,5 +1,6 @@
 <?php require("topo.php");
 require ("functions.php");
+require ("pag.php");
 ?>
 
  <?php

@@ -1,5 +1,7 @@
 <?php require("topo.php");
 require ("functions.php");
+require ("js/function.js");
+require ("pag.php");
 ?>
 
 <div class="row">
@@ -46,6 +48,8 @@ require ("functions.php");
 	}
 ?>
 
+
+
  <div class="col-lg-4">
             <div class="panel panel-info">
               <div class="panel-heading">
@@ -61,45 +65,76 @@ require ("functions.php");
 
 <div class="form-group">
     <label for="endereco">Endereço</label>
-    <input type="text" name="endereco" class="form-control input-sm" id="endereco" placeholder="Endereço do cliente">
+    <input type="text" required   value="" name="endereco" class="form-control input-sm" id="endereco" placeholder="Endereço do cliente">
 </div>
 
 <div class="form-group">
     <label for="bairro">Bairro</label>
-    <input type="text" name="bairro" class="form-control input-sm" id="bairro" placeholder="Bairro do cliente">
+    <input type="text" required  name="bairro" class="form-control input-sm" id="bairro" placeholder="Bairro do cliente">
 </div>
 
 <div class="form-group">
     <label for="cidade">Cidade</label>
-    <input type="text" name="cidade" class="form-control input-sm" id="cidade" placeholder="Cidade do cliente">
+    <input type="text"  required  name="cidade" class="form-control input-sm" id="cidade" placeholder="Cidade do cliente">
 </div>
 
 <div class="form-group">
-    <label for="uf">UF</label>
-    <input type="text" name="uf" class="form-control input-sm" id="uf" placeholder="Estado do cliente">
+   <label for="cpf_cnpj">UF:</label>
+   <select  name="uf" class="form-control input-sm" id="uf" > 
+		<option value="estado">Selecione o Estado</option> 
+		<option value="ac">Acre</option> 
+		<option value="al">Alagoas</option> 
+		<option value="am">Amazonas</option> 
+		<option value="ap">Amapá</option> 
+		<option value="ba">Bahia</option> 
+		<option value="ce">Ceará</option> 
+		<option value="df">Distrito Federal</option> 
+		<option value="es">Espírito Santo</option> 
+		<option value="go">Goiás</option> 
+		<option value="ma">Maranhão</option> 
+		<option value="mt">Mato Grosso</option> 
+		<option value="ms">Mato Grosso do Sul</option> 
+		<option value="mg">Minas Gerais</option> 
+		<option value="pa">Pará</option> 
+		<option value="pb">Paraíba</option> 
+		<option value="pr">Paraná</option> 
+		<option value="pe">Pernambuco</option> 
+		<option value="pi">Piauí</option> 
+		<option value="rj">Rio de Janeiro</option> 
+		<option value="rn">Rio Grande do Norte</option> 
+		<option value="ro">Rondônia</option> 
+		<option value="rs">Rio Grande do Sul</option> 
+		<option value="rr">Roraima</option> 
+		<option value="sc">Santa Catarina</option> 
+		<option value="se">Sergipe</option> 
+		<option value="sp">São Paulo</option> 
+		<option value="to">Tocantins</option> 
+	</select>
 </div>
 
 <div class="form-group">
     <label for="cpf_cnpj">CPF ou CNPJ</label>
-    <input type="text" name="cpf_cnpj" class="form-control input-sm" id="cpf_cnpj" placeholder="CPF ou CNPJ do cliente">
+    <input type="text" required  name="cpf_cnpj" class="form-control input-sm" id="cpf_cnpj" placeholder="CPF ou CNPJ do cliente"onkeypress="return number(event);" size=18 maxlength=18>
 </div>
 
 <div class="form-group">
     <label for="telefone">Telefone</label>
-    <input type="text" name="telefone" class="form-control input-sm" id="telefone" placeholder="Telefone do cliente">
+    <input type="text" required  name="telefone" class="form-control input-sm" id="telefone" placeholder="Telefone do cliente" onkeypress="mascara(this, '## #####-####'); return number(event);" maxlength=13>
 </div>
 
 <div class="form-group">
     <label for="fax">Fax</label>
-    <input type="text" name="fax" class="form-control input-sm" id="fax" placeholder="Fax do cliente">
+    <input type="text" required  name="fax" class="form-control input-sm" id="fax" placeholder="Fax do cliente" onkeypress="mascara(this, '## ## ####-####'); return number(event);" maxlength=15>
 </div>
 
 
 <tr>
 		<th>&nbsp;</th>
 		<td valign="top">
-			<input type="submit" name="enviar" value="send" class="form-submit" />
-        </td>
+		<div align="center">
+			<input type="submit" name="enviar" value="send"  class="form-submit" />
+        </div>
+		</td>
 		<td></td>
 	</tr>
 
