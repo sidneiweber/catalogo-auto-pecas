@@ -1,18 +1,13 @@
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-
 <?php
 	session_start();
 	//INSTANCIAR A PAGINA DO CARRINHO
 	$pagina = 'carrinho.php';
 	//INICIAR A CLASS
-
 	class shopping{	
-
 		private $banco = 'catalogo';	
-		private $senha = 'bolacha';
+		private $senha = '';
 		private $login = 'root';	
-		private $hostname = 'localhost';
-		
+		private $hostname = 'localhost';	
 		//CONEXAO
 		function conexao(){
 			mysql_connect($this->hostname, $this->login, $this->senha) or die ("ERRO".mysql_error());
@@ -20,10 +15,8 @@
 			mysql_query("SET NAME 'utf8'");
 			mysql_query("SET character_set_connetion=utf8");
 			mysql_query("SET character_set_client=utf8");
-			mysql_query("SET character_set_results=utf8");
-		
-		}
-		
+			mysql_query("SET character_set_results=utf8");		
+		}		
 		// MOSTRAR O CARRINHO DE COMPRAS
 		function carrinho(){
 			// VERIFICAR SE EXISTE UMA SESSION
@@ -81,8 +74,7 @@
 					</tr>';
 				}
 			}
-		}
-		
+		}		
 		// MOSTRAR LISTA DE CLIENTES
 		function clientes(){
 			if($_SESSION){
@@ -98,23 +90,19 @@
 				echo "<input type = 'button' name='finalizarOrcamento' value = 'Finalizar orçamento' onClick='if(document.orcamento.cliente.value == 0){alert(\"Selecione um cliente\");}else{document.orcamento.submit();}'/>";
 			}
 		}
-	}
-	
+	}	
 	// VERIFICAO DE ADICAO	
 	if(isset($_GET['add'])){	
 		$id = $_GET['add'];
 		$_SESSION['produto']['id_' . $id]['quantidade'] += '1';
 		header ("Location: ".$pagina);
-	
 	}
-	
 	// VERIFICACAO DE SUBTRACAO	
 	if(isset($_GET['menos'])){
 		$id = $_GET['menos'];
 		$_SESSION['produto']['id_' . $id]['quantidade']--;
 		header ("Location: ".$pagina);	
-	}
-	
+	}	
 	// ZERAR PRODUTOS	
 	if(isset($_GET['del'])){	
 		$id = $_GET['del'];
@@ -124,4 +112,3 @@
 		header ("Location: ".$pagina);	
 	}
 ?>
-

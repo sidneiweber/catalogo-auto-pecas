@@ -1,6 +1,6 @@
 <?php
 $local = "localhost";
 $usuario = "root";
-$senha = "bolacha";
+$senha = "";
 $selecione = "catalogo";
 ?>

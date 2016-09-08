@@ -13,6 +13,7 @@ if(isset($_GET['idOrcamento'])){
 	
 	$sql = mysql_query($query);
 	if($res=mysql_fetch_array($sql)){
+		
 		$nome = $res[0];
 		$endereco = $res[1];
 		$telefone = $res[2];
@@ -37,9 +38,7 @@ if(isset($_GET['idOrcamento'])){
 
 <div class="container">
         <div class="col-xs-12">
-            <div class="invoice-title">
-                <img src="images/logo_nota.png"><h3 class="pull-right">Ordem #<?php echo $idOrcamento; ?></b></h3>
-            </div>
+           
             <hr>
             <div class="row" >
                 <div class="col-xs-6">
