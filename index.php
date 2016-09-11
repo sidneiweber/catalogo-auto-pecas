@@ -1,6 +1,5 @@
 <?php require("topo.php");
 require ("functions.php");
-require ("pag.php");
 ?>
 
         <div class="row">
@@ -48,7 +47,7 @@ require ("pag.php");
     	$css = ($i % 2 == 0) ? 'style="background: #FFF;"' : 'style="background: #e7e7e7;"';
     ?>
 
-    <tr <?php echo $css ?> > 
+    <tr <?php echo $css ?> >
     	<td class=centro><?php echo $codigo; ?> </td>
     	<td class=centro><?php echo $produto; ?></td>
       <td class=esquerda><?php echo $descricao; ?></td>
@@ -83,7 +82,7 @@ require ("pag.php");
 
          <div class="col-lg-4">
             <div class="panel panel-danger">
-              <div class="panel-heading"> 
+              <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-money"></i> Boletos do dia</h3>
               </div>
               <div class="panel-body">

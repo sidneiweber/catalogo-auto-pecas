@@ -21,9 +21,9 @@ function mostraMes($m) {
             break;
         case 07: case 7: $mes = "Julho";
             break;
-        case 08: case 8: $mes = "Agosto";
+        case 8: case 8: $mes = "Agosto";
             break;
-        case 09: case 9: $mes = "Setembro";
+        case 9: case 9: $mes = "Setembro";
             break;
         case 10: $mes = "Outubro";
             break;
