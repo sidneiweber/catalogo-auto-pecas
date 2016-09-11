@@ -38,7 +38,7 @@ require ("functions.php");
          $css = ($i % 2 == 0) ? 'style="background: #FFF;"' : 'style="background: #e7e7e7;"';
          ?>
 
-         <tr <?php echo $css ?>>
+         <tr <?php echo $css ?>> 
            <td class=centro><?php echo $codigo; ?> </td>
            <td class=centro><?php echo $produto; ?></td>
            <td class=esquerda><?php echo $descricao; ?></td>
@@ -52,7 +52,7 @@ require ("functions.php");
    </table>
  </div>
  <div class="text-right">
-
+   
  </div>
 </div>
 </div><!-- /.row -->

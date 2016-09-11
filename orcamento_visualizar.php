@@ -8,29 +8,29 @@ $db = mysql_select_db("$selecione")
 ?>
 <?php
 if(isset($_GET['idOrcamento'])){
-    $idOrcamento = $_GET['idOrcamento'];
-    $query = "SELECT A.NOME, A.ENDERECO, A.TELEFONE, B.idOrcamento, DATE_FORMAT(B.dataHora, '%d/%m/%Y %H:%i') as dataHora FROM clientes A INNER JOIN orcamento B on A.idCliente = B.idCliente WHERE B.idOrcamento = ".$idOrcamento;
-
-    $sql = mysql_query($query);
-    if($res=mysql_fetch_array($sql)){
-        $nome = $res[0];
-        $endereco = $res[1];
-        $telefone = $res[2];
-        $idOrcamento = $res[3];
-        $dataHora = $res[4];
-    }
+	$idOrcamento = $_GET['idOrcamento'];
+	$query = "SELECT A.NOME, A.ENDERECO, A.TELEFONE, B.idOrcamento, DATE_FORMAT(B.dataHora, '%d/%m/%Y %H:%i') as dataHora FROM clientes A INNER JOIN orcamento B on A.idCliente = B.idCliente WHERE B.idOrcamento = ".$idOrcamento;
+	
+	$sql = mysql_query($query);
+	if($res=mysql_fetch_array($sql)){
+		$nome = $res[0];
+		$endereco = $res[1];
+		$telefone = $res[2];
+		$idOrcamento = $res[3];
+		$dataHora = $res[4];
+	}
 }
 ?>
 <?php require ("functions.php");?>
 
 <html>
-    <head>
+	<head>
         <link href="css/estilo_orcamento.css" rel="stylesheet" type="text/css" />
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
         <style type="text/css">
-          @media print {
-          .noprint { display: none; }
-          }
+		  @media print {
+		  .noprint { display: none; }
+		  }
         </style>
     </head>
     <body>
@@ -48,20 +48,20 @@ if(isset($_GET['idOrcamento'])){
                 </div>
 
                 <div class="col-xs-6 text-right">
-
+                   
                         <strong>Data ordem:</strong> <?php echo $dataHora ?><br><br>
-
+                   
                 </div>
             </div>
-
-
+            
+          
     </div>
-
-
+    
+    
                 <div class="panel-body">
                         <table class="table table-condensed" >
                             <thead>
-                                <tr bgcolor="#CCC">
+                                <tr bgcolor="#CCC">                                    
                                     <td><font size="2"><strong>Código</strong></td>
                                     <td class="text-center"><font size="2"><strong>Descrição</strong></td>
                                     <td class="text-center"><font size="2"><strong>Qtd</strong></td>
@@ -71,7 +71,7 @@ if(isset($_GET['idOrcamento'])){
                             </thead>
                             <tbody>
                                 <!-- foreach ($order->lineItems as $line) or some such thing here -->
-                              <tr>
+                              <tr>   
 
                             <?php
                                 $sql = mysql_query("SELECT A.descricao, B.quantidade, B.preco, A.codigo, A.produto FROM produtos A inner join orcamento B on A.id = B.idProduto WHERE B.idOrcamento = ".$idOrcamento." ORDER BY A.descricao ASC")
@@ -84,7 +84,7 @@ if(isset($_GET['idOrcamento'])){
                                     <td valign=\'top\'><font size="1">'.number_format($res[2], 2).'</td>
                                     <td valign=\'top\'><font size="1">'.number_format($res[1]*$res[2], 2).'</td>
                                     </tr>';
-
+                                    
                                     $total += $res[1]*$res[2];
                                 }
                             ?>
@@ -97,20 +97,20 @@ if(isset($_GET['idOrcamento'])){
                                     <td class="thick-line text-right"><strong>Total</strong></td>
                                     <td class="thick-line text-right"><?php echo number_format($total, 2) ?></td>
                                 </tr>
-
+                        
                             </tbody>
-
+                            
                         </table>
-
+                  
                 </div>
-
+    
        </form>
 
-            <table>
+            <table>               
             <td align = "center" class='noprint'>
-            <input type="button" value="Imprimir" onclick=javascript:window.print()>
+            <input type="button" value="Imprimir" onclick=javascript:window.print()> 
             </td>
             </table>
-
+           
     </body>
 </html>

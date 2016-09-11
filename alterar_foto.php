@@ -1,5 +1,5 @@
 <?php
-require("topo.php");
+require("topo_sem_menu.php");
 require ("functions.php");
 
 $id=$_GET['id'];

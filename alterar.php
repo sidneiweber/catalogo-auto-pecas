@@ -1,6 +1,5 @@
 <?php require("topo.php");
 require ("functions.php");
-require ("pag.php");
 
 $id=$_GET['id'];
 
@@ -17,6 +16,7 @@ $descricao = $linha["descricao"];
 $estoque = $linha["estoque"];
 $codigo_original = $linha["codigo_original"];
 $codigo_paralelo = $linha["codigo_paralelo"];
+$ncm = $linha["ncm"];
 $preco = $linha["preco"];
 $promocao = $linha["promocao"];
 $custo = $linha["custo"];
@@ -81,6 +81,14 @@ $ultimo_fornecedor = $linha["ultimo_fornecedor"];
     <div class="col-sm-10">
     <input type="text" class="form-control input-sm" name="codigo_paralelo_novo" id="codigo_paralelo_novo" value="<?php echo $codigo_paralelo; ?>">
 	</div>
+  </div>
+  <br>
+
+  <div class="form-group">
+    <label for="ncm" class="col-sm-2 control-label">NCM</label>
+    <div class="col-sm-10">
+    <input type="text" class="form-control input-sm" name="ncm_novo" id="ncm_novo" value="<?php echo $ncm; ?>">
+  </div>
   </div>
   <br>
 

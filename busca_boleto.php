@@ -1,6 +1,5 @@
 <?php require("topo.php");
 require ("functions.php");
-require ("pag.php");
 // Verifica se foi feita alguma busca
 // Caso contrario, redireciona o visitante
 if (!isset($_GET['consulta_data'])) {
@@ -18,7 +17,9 @@ $n_palavras=count($array);
 $busca = mysql_real_escape_string($busca);
 
 // consulta banco
-$sql = mysql_query("SELECT * FROM contas_pagar ORDER BY  fornecedor")
+$sql = mysql_query("SELECT fornecedor, numero_documento, data, valor, status
+				   FROM contas_pagar
+				   ORDER BY fornecedor ASC")
        or die(mysql_error());
 if (@mysql_num_rows($sql) == 0) {
 	echo "<h1>Nenhum resultado encontrato</h1>";
@@ -46,7 +47,7 @@ $count = mysql_num_rows($sql);
         </div><!-- /.row -->
 
 <div class="row">
- <div class="col-lg-7">
+ <div class="col-lg-6">
             <div class="panel panel-danger">
               <div class="panel-heading"> 
                 <h3 class="panel-title"><i class="fa fa-money"></i> Boletos do dia <?php echo $busca; ?></h3>
@@ -56,18 +57,17 @@ $count = mysql_num_rows($sql);
                   <table class="table table-bordered table-hover table-striped tablesorter">
                     <thead>
                       <tr>
-                        <th width="10px">Opções</th>
                         <th>Fornecedor</th>
                         <th>Nr Documento</th>
                         <th>Data</th>
                         <th>Valor</th>
                         <th>Status</th>
+                        <th width="10px">Opções</th>
                       </tr>
                     </thead>
                     <tbody>
 <?php
 while($res=mysql_fetch_array($sql)) {
-	$i=0;
 	$id = $res[0];
 	$fornecedor = $res[1];
 	$numero_documento = $res[2];
@@ -89,40 +89,32 @@ while($res=mysql_fetch_array($sql)) {
 
 
 <tr <?php echo $css ?>> 
-  <td><a href="alterar_boleto.php?id=<?php echo $id ?>"><img src=images/editar.png width="24" height="24"/></a></td>
-	<td><?php echo $fornecedor; ?> </td>
+ 	<td><?php echo $fornecedor; ?> </td>
 	<td><?php echo $numero_documento; ?></td>
-    <td><?php echo $data; ?></td>
-    <td><?php echo formata_dinheiro($valor); ?></td>
-
-
-<td>
-<?php
-
-if($status == "pago"):
-    echo '<span class="label label-success">Pago</span>';
-else:
-    echo '<span class="label label-danger">Aberto</span>';
-endif;
-}
-?>
-</td>
-
-    <!--<td><?php echo $status; ?></td> -->
-    <!-- <td class=centro><?php echo $hoje; ?></td>-->
+  <td><?php echo $data; ?></td>
+  <td><?php echo formata_dinheiro($valor); ?></td>
+  <td>
+    
+    <?php
+      if($status == "pago"):
+        echo '<span class="label label-success">Pago</span>';
+      else:
+        echo '<span class="label label-danger">Aberto</span>';
+      endif;
+    
+    ?>
+  </td>
+  <td><a class='iframe' href="alterar_boleto.php?id=<?php echo $id ?>"><img src=images/editar.png width="24" height="24"/></a></td>
     
 </tr>
 <?php
-
+}
 ?>
-
-
-
                     </tbody>
                   </table>
                 </div>
                 <div class="text-right">
-
+                  <span style="font-size:18px; color:#F00">Total do dia: <?php echo formata_dinheiro($saidas_dia)?></span>
                   <!-- <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a> -->
                 </div>
               </div>
@@ -161,32 +153,46 @@ endif;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.js"></script>
 
     <!-- Page Specific Plugins -->
     <script src="js/tablesorter/jquery.tablesorter.js"></script>
     <script src="js/tablesorter/tables.js"></script>
+
+    <!-- MODAL -->
+<script src="js/jquery.colorbox.js"></script>
+<script>
+    $(document).ready(function(){
+      //Examples of how to assign the Colorbox event to elements
+      $(".group1").colorbox({rel:'group1'});
+      $(".group2").colorbox({rel:'group2', transition:"fade"});
+      $(".group3").colorbox({rel:'group3', transition:"none", width:"75%", height:"75%"});
+      $(".group4").colorbox({rel:'group4', slideshow:true});
+      $(".ajax").colorbox();
+      $(".youtube").colorbox({iframe:true, innerWidth:640, innerHeight:390});
+      $(".vimeo").colorbox({iframe:true, innerWidth:500, innerHeight:409});
+      $(".iframe").colorbox({iframe:true, width:"60%", height:"65%"});
+      $(".inline").colorbox({inline:true, width:"50%"});
+      $(".callbacks").colorbox({
+        onOpen:function(){ alert('onOpen: colorbox is about to open'); },
+        onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
+        onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
+        onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
+        onClosed:function(){ alert('onClosed: colorbox has completely closed'); }
+      });
+
+      $('.non-retina').colorbox({rel:'group5', transition:'none'})
+      $('.retina').colorbox({rel:'group5', transition:'none', retinaImage:true, retinaUrl:true});
+      
+      //Example of preserving a JavaScript event for inline calls.
+      $("#click").click(function(){ 
+        $('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+        return false;
+      });
+    });
+  </script>
+<!-- FIM MODAL -->
 
   </body>
 </html>

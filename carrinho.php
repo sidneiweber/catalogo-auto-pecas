@@ -1,10 +1,11 @@
 <?php require("topo.php");
 require ("functions.php");
-require ('processa.php');
-require("pag.php");
+
+require 'processa.php';
 $conecta = new shopping();
 $conecta->conexao();
 ?>
+
 <?php
 
 $sql = mysql_query("SELECT * FROM produtos ORDER BY id DESC LIMIT 10");
@@ -19,14 +20,14 @@ $count = mysql_num_rows($sql);
 
 <div class="col-lg-6">
             <div class="panel panel-info">
-              <div class="panel-heading"> 
+              <div class="panel-heading">
                 <h3 class="panel-title"><i class="fa fa-money"></i> Boletos do dia</h3>
               </div>
               <div class="panel-body">
                 <div class="table-responsive">
                   <table class="table table-bordered table-hover table-striped tablesorter">
                     <thead>
-                      
+
                         <th>Produto</th>
                         <th>QTD</th>
                         <th>Valor</th>
@@ -49,11 +50,12 @@ $conecta->carrinho();
 
 <div class="text-right">
 <form name = "orcamento" action="orcamento_finalizar.php">
-    
+
         <tr>
-            <td width = "30px">
-                Cliente:
-            </td>
+            <form class="form-horizontal" role="form">
+    <div class="form-group">
+      <label for="basic" class="col-lg-6 control-label">Selecione o cliente</label>
+            <div class="col-lg-12">
             <td>
                 <?php $conecta->clientes(); ?>
             </td>
@@ -69,6 +71,7 @@ $conecta->carrinho();
     <!-- Page Specific Plugins -->
     <script src="js/tablesorter/jquery.tablesorter.js"></script>
     <script src="js/tablesorter/tables.js"></script>
+    <script src="js/bootstrap-select.js"></script>
 
   </body>
 </html>

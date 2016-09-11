@@ -31,17 +31,17 @@ $count = mysql_num_rows($sql);
 
 
           <?php
-          while($res=mysql_fetch_array($sql)) {
-            $id = $res[1];
+          while($res=mysql_fetch_array($sql)) {	
+            $id = $res[1];	
             $nome = $res[0];
-            $dataHora = $res[2];
-
-            $i++;
+            $dataHora = $res[2];	
+            
+            $i++;		
             $css = ($i % 2 == 0) ? 'style="background: #CCC;"' : 'style="background: #e7e7e7;"';
             ?>
 
 
-            <tr <?php echo $css ?>>
+            <tr <?php echo $css ?>> 
               <td><?php echo $nome; ?> </td>
               <td><?php echo $id; ?></td>
               <td><?php echo $dataHora; ?></td>

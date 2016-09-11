@@ -1,6 +1,5 @@
 <?php require("topo.php");
 require ("functions.php");
-require ("pag.php");
 
 $sql = mysql_query("SELECT * FROM clientes ORDER BY nome");
 $count = mysql_num_rows($sql);
@@ -62,10 +61,10 @@ $count = mysql_num_rows($sql);
 
   <td>
   	<a href = "cliente_exibir.php?id=<?php echo $id ?>">
-    	<img src = "http://blautopecas.com.br/catalogo/images/editar.png" alt = "Editar" width = "20px" height="20px"/>
+    	<img src = "images/editar.png" alt = "Editar" width = "20px" height="20px"/>
     </a>
     <a href = "cliente_remover_db.php?id=<?php echo $id ?>" onclick="return confirm('Confirmar exclusão de registro?');">
-    	<img src = "http://blautopecas.com.br/catalogo/images/excluir.png" alt = "Remover" width = "20px" height="20px"/>
+    	<img src = "images/excluir.png" alt = "Remover" width = "20px" height="20px"/>
     </a>
   </td>
 

@@ -1,6 +1,5 @@
-<?php require("topo.php");
+<?php require("topo_sem_menu.php");
 require ("functions.php");
-require ("pag.php");
 
 $id=$_GET['id'];
 
@@ -34,53 +33,27 @@ $status = $linha["status"];
 
 <form  method='POST' action='alterar_boleto_db.php?id=<?php echo $id; ?>' name="form2">
 
-<div class="col-lg-7">
-<form class="form-horizontal" role="form">
-  <div class="form-group">
-    <label for="fornecedor" class="col-sm-2 control-label">Fornecedor</label>
-    <div class="col-sm-10">
-    <input type="text" class="form-control" name="fornecedor_novo" id="fornecedor_novo" value="<?php echo $fornecedor; ?>">
-	</div>
-  </div>
-  <br>
+<div class="col-lg-6">
+<div class="input-group input-group-sm">
+  
+  <label for="fornecedor_novo">Fornecedor</label>
+  <input type="text" class="form-control" name="fornecedor_novo" id="fornecedor_novo" value="<?php echo $fornecedor; ?>">
 
-  <div class="form-group">
-    <label for="numero_documento" class="col-sm-2 control-label">Numero Documento</label>
-     <div class="col-sm-10">
-    <input type="text" class="form-control input-sm" name="numero_documento_novo" id="numero_documento_novo" value="<?php echo $numero_documento; ?>">
-	</div>
-  </div>
-  <br>
+  <label for="numero_documento_novo">Numero Documento</label>
+	<input type="text" class="form-control input-sm" name="numero_documento_novo" id="numero_documento_novo" value="<?php echo $numero_documento; ?>">
 
-  <div class="form-group">
-    <label for="data" class="col-sm-2 control-label">Data</label>
-    <div class="col-sm-10">
-    <input type="text" class="form-control input-sm" name="data_novo" id="data_novo" value="<?php echo $data; ?>">
-	</div>
-  </div>
-  <br>
+  <label for="data_novo">Data</label>
+  <input type="text" class="form-control input-sm" name="data_novo" id="data_novo" value="<?php echo $data; ?>">
 
-  <div class="form-group">
-    <label for="valor" class="col-sm-2 control-label">Valor</label>
-    <div class="col-sm-10">
-    <input type="text" class="form-control input-sm" name="valor_novo" id="valor_novo" value="<?php echo $valor; ?>">
-	</div>
-  </div>
-  <br>
+  <label for="valor_novo">Valor</label>
+  <input type="text" onKeyPress="return(MascaraMoeda(this,'','.',event))" class="form-control input-sm" name="valor_novo" id="valor_novo" value="<?php echo $valor; ?>">
 
-  <div class="form-group">
-    <label for="status" class="col-sm-2 control-label">Status</label>
-    <div class="col-sm-10">
-<select name="status_novo"> <option value="<?php echo $status; ?>" selected><?php echo $status; ?></option> <option value="aberto">Aberto</option> <option value="pago">Pago</option></select>
-    <!--<input type="text" class="form-control input-sm" name="status_novo" id="status_novo" value="<?php echo $status; ?>">-->
-	</div>
-  </div>
-  <br>
-
-<div class="col-sm-offset-2 col-sm-10">
-  <input type="submit" name="Alterar" value="Alterar" class="btn btn-default" />
+  <label for="status_novo">Status</label>
+  <select name="status_novo"> <option value="<?php echo $status; ?>" selected><?php echo $status; ?></option> <option value="aberto">Aberto</option> <option value="pago">Pago</option></select>
+  <!--<input type="text" class="form-control input-sm" name="status_novo" id="status_novo" value="<?php echo $status; ?>">-->
+	<div class="col-sm-offset-2 col-sm-10">
+  <input type="submit" onclick="parent.window.location.reload(true)" name="Alterar" value="Alterar" class="btn btn-default" />
 </div>
-</form>
 </div>
 <?php
 }

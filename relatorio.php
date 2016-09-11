@@ -1,8 +1,6 @@
 <?php
 require("topo.php");
 require ("functions.php");
-$datainicio=date(d-m-Y);
-$datafinal=date(d-m-Y);
 
 $query5 = mysql_query("SELECT * FROM clientes ORDER BY nome");
 

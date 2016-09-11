@@ -9,6 +9,7 @@ $id = $_GET['add'];
 
 <html>
 	<head>
+
     </head>
     <body>
     	<form action = "inserir_dados.php">
@@ -17,7 +18,10 @@ $id = $_GET['add'];
         	$sql = mysql_query($query);
 			if($res=mysql_fetch_array($sql)) {
 		?>
-    		<table width="100%">
+         <img width="180" height="180" src="fotos/<?php echo $res[10]; ?>"/>
+         
+         <div class="table-responsive">
+    		<table class="table">
                 <tr>
                     <td width="10%">
                         Produto:
@@ -31,7 +35,7 @@ $id = $_GET['add'];
                         Quantidade:
                     </td>
                     <td>
-                        <input type="text" name="quantidade" size="5" maxlength="5" value="1">
+                        <input type="number" name="quantidade" size="5" maxlength="5" value="1">
                     </td>
                 </tr>
                 <tr>
@@ -39,13 +43,13 @@ $id = $_GET['add'];
                         Preço:
                     </td>
                     <td>
-                        <input type="text" name="preco" size="10" maxlength="10" value=<?php echo $res[7]; ?>>
+                        <input type="text" name="preco" size="10" maxlength="10" value=<?php echo $res[8]; ?>>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="2" align="center">
                     	<br><br>
-                        <input type="button" value="Inserir" onClick="inserir()">
+                        <button type="submit" class="btn btn-success" onClick="inserir()">Inserir</button>
                     </td>
                 </tr>
            </table>

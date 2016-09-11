@@ -4,20 +4,20 @@
 session_start();
 
 if(isset($_GET['add'])){
-    $id = $_GET['add'];
-    $_SESSION['produto']['id_' . $id]['preco'] = $_GET['preco'];
-    $_SESSION['produto']['id_' . $id]['quantidade'] = $_GET['quantidade'];
+	$id = $_GET['add'];
+	$_SESSION['produto']['id_' . $id]['preco'] = $_GET['preco'];
+	$_SESSION['produto']['id_' . $id]['quantidade'] = $_GET['quantidade'];
     $_SESSION['produto']['id_' . $id]['id'] = $id;
 }
 ?>
 
 <html>
-    <head>
-        <title></title>
-
+	<head>
+    	<title></title>
+      
     </head>
     <body>
-        <form action="">
+    	<form action="">
             <table width="750px">
                 <tr>
                     <td align = "center">
@@ -26,7 +26,7 @@ if(isset($_GET['add'])){
                 </tr>
                 <tr>
                     <td align="center">
-                        <br /><br /><br />
+                    	<br /><br /><br />
                         <table width = "50%">
                             <tr>
                                 <td>
