@@ -1,20 +1,20 @@
-<?php
-include"conexao/config.php";
+<?php include"conexao/config.php";
 $conexao = mysql_connect("$local", "$usuario", "$senha")
-           or die(mysql_error());
+or die(mysql_error());
 $db = mysql_select_db("$selecione")
-           or die (mysql_error());
+or die (mysql_error());
 ?>
 <?php
 $sql = mysql_query("SELECT codigo, produto, descricao, estoque, codigo_original, codigo_paralelo, preco, promocao, foto
-				   FROM produtos
-				   ORDER BY produto,descricao ASC
-				   LIMIT 10")
-       or die(mysql_error());
+ FROM produtos
+ ORDER BY id DESC
+ LIMIT 10")
+or die(mysql_error());
 if (@mysql_num_rows($sql) == 0) {
 	echo "<h1>Nenhum resultado encontrato</h1>";
 }
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
