@@ -21,6 +21,7 @@ Class Produto {
     public $pasta;
     public $custo;
     public $ultimo_fornecedor;
+    public $nomeProduto;
 
     public function __construct($db) {
         $this->conn = $db;
@@ -214,7 +215,7 @@ Class Produto {
             echo "<script>alert('Erro na linha: {$erro->getLine()}')</script>";
         }
     }
-    
+
     // delete the product
     public function delete() {
         try {
@@ -241,7 +242,7 @@ Class Produto {
             echo "<script>alert('Erro na linha: {$erro->getLine()}')</script>";
         }
     }
-    
+
     public function getUltimosProdutos() {
         try {
             $sql = "SELECT * FROM produtos ORDER By id DESC LIMIT 10";
@@ -249,6 +250,32 @@ Class Produto {
             $stm->execute();
             $dados = $stm->fetchAll(PDO::FETCH_OBJ);
             return $dados;
+        } catch (PDOException $erro) {
+            echo "<script>alert('Erro na linha: {$erro->getLine()}')</script>";
+        }
+    }
+
+    public function getAllProdutos($inicio, $porpagina) {
+        try {
+            $this->inicio = $inicio;
+            $this->porpagina = $porpagina;
+            $sql = "SELECT * FROM produtos ORDER by produto,descricao DESC LIMIT $this->inicio,$this->porpagina";
+            $stm = $this->conn->prepare($sql);
+            $stm->execute();
+            $dados = $stm->fetchAll(PDO::FETCH_OBJ);
+            return $dados;
+        } catch (PDOException $erro) {
+            echo "<script>alert('Erro na linha: {$erro->getLine()}')</script>";
+        }
+    }
+
+    public function getTotalProdutos() {
+        try {
+            $sql = "SELECT COUNT(*) AS total FROM produtos";
+            $stm = $this->conn->prepare($sql);
+            $stm->execute();
+            $numeroResultados = $stm->fetchColumn();
+            return $numeroResultados;
         } catch (PDOException $erro) {
             echo "<script>alert('Erro na linha: {$erro->getLine()}')</script>";
         }

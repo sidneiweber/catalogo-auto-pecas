@@ -1,60 +1,64 @@
-<?php require("topo.php");
-require ("functions.php");
+<?php
+require("topo.php");
+require 'functions.php';
+require('Classes/Conexao.class.php');
+require('Classes/Produto.class.php');
+//$conn = new Conexao();
+
+$conexao = new Conexao();
+$db = $conexao->getConnection();
+
+/*
+ * Chama o método getAllArtigo() que retorna um array de objetos
+ */
+$produto = new Produto($db);
+$dados = $produto->getUltimosProdutos();
 ?>
 
 <div class="row">
-  <div class="col-lg-12">
-    <ol class="breadcrumb">
-      <li class="active"><i class="fa fa-dashboard"></i> Últimos produtos cadastrados</li>
-    </ol>
-  </div>
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li class="active"><i class="fa fa-dashboard"></i>Bem vindo</li>
+        </ol>
+    </div>
 </div><!-- /.row -->
 
-<div class="col-lg-12">
-</div>
-<div class="panel-body">
-  <div class="table-responsive">
-    <table class="table table-bordered table-hover table-striped">
-      <thead>
-        <tr>
-          <th>Codigo</th>
-          <th>Produto</th>
-          <th>Descricao</th>
-          <th>Valor</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php
-        while($res=mysql_fetch_array($sql)) {
-         $codigo = $res[0];
-         $produto = $res[1];
-         $descricao = $res[2];
-         $estoque = $res[3];
-         $codigo_original = $res[4];
-         $codigo_paralelo = $res[5];
-         $preco = $res[6];
-         $promocao = $res[7];
-         $i++;
-         $css = ($i % 2 == 0) ? 'style="background: #FFF;"' : 'style="background: #e7e7e7;"';
-         ?>
+<div class="col-lg-5">
+<div class="panel panel-primary">
+  <div class="panel-heading">Ultimos Produtos cadastrados</div>
+  <div class="panel-body">
 
-         <tr <?php echo $css ?>> 
-           <td class=centro><?php echo $codigo; ?> </td>
-           <td class=centro><?php echo $produto; ?></td>
-           <td class=esquerda><?php echo $descricao; ?></td>
-           <td class=centro><?php echo formata_dinheiro($preco); ?></td>
-         </tr>
-         <?php
-       }
-       ?>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Produto</th>
+                    <th>Descricao</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($dados as $reg): ?>
 
-     </tbody>
-   </table>
- </div>
- <div class="text-right">
-   
- </div>
+                    <tr> 
+                        <td class=centro><?php echo $reg->codigo; ?></td>
+                        <td class=centro><?php echo $reg->produto; ?></td>
+                        <td class=esquerda><?php echo $reg->descricao; ?></td>
+                        <td class=centro><?php echo formata_dinheiro($reg->preco); ?></td>
+                    </tr>
+                    <?php
+                endforeach;
+                ?>
+
+            </tbody>
+        </table>
+        </div>
+    </div>
+  </div>
 </div>
+
+
 </div><!-- /.row -->
 
 
