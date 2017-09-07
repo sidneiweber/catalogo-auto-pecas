@@ -22,7 +22,7 @@ Menu principal – Cadastro de produtos
 
 # Instalação
 
-Instalar servidor web (Apache & PHP).
+Instalar servidor web (Apache, PHP & Mysql).
 
 Editar arquivos conexao/config.php e processa.php inserindo as informações do banco de dados.
 
