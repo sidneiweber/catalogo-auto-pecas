@@ -20,6 +20,10 @@ Menu principal – Cadastro de produtos
 
 – Carrinho (Produtos inseridos no carrinho para realizar pedido venda/orçamento)
 
+# Requistos
+mod_rewrite ativado no apache
+ft_min_word_len=2
+
 # Instalação
 
 Instalar servidor web (Apache, PHP & Mysql).
