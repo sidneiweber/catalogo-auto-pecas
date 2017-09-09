@@ -22,6 +22,7 @@ Menu principal – Cadastro de produtos
 
 # Requistos
 mod_rewrite ativado no apache
+
 ft_min_word_len=2
 
 # Instalação
