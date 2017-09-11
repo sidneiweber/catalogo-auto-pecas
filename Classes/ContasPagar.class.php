@@ -131,6 +131,10 @@ class ContasPagar {
             $stm->execute();
             $count = $stm->fetchColumn();
             return $count;
+            
+            //setlocale(LC_MONETARY, 'pt_BR');
+            //echo money_format('%i', $number) . "\n";
+            
         } catch (PDOException $erro) {
             echo "<script>alert('Erro na linha: {$erro->getLine()}')</script>";
         }
