@@ -1,7 +1,6 @@
-<?php require("../topo.php");
-require ("../functions.php");
-
-
+<?php 
+require '../topo.php';
+require('../Config.inc.php');
 require('../Classes/Conexao.class.php');
 require('../Classes/ContasPagar.class.php');
 //$conn = new Conexao();
@@ -13,32 +12,8 @@ $db = $conexao->getConnection();
  * Chama o método getAllArtigo() que retorna um array de objetos
  */
 $contaspagar = new ContasPagar($db);
-
+$dados = $contaspagar->contasPagarHoje();
 ?>
-
-<?php
-$sql = mysql_query("SELECT fornecedor, numero_documento, data, valor, status
-				   FROM contas_pagar
-				   ORDER BY fornecedor ASC")
-       or die(mysql_error());
-if (@mysql_num_rows($sql) == 0) {
-	echo "<h1>Nenhum resultado encontrato</h1>";
-}
-?>
-
-<?php
-$hoje=date('Y-m-d');
-
-$sql = mysql_query("SELECT * FROM contas_pagar WHERE data LIKE '$hoje' ORDER BY fornecedor ASC");
-
-//$sql = mysql_query("SELECT id, codigo, produto, descricao, estoque, codigo_original, codigo_paralelo, preco, promocao, foto FROM produtos WHERE produto LIKE '%$busca%' OR descricao LIKE '%$busca%' ORDER BY produto,descricao ASC LIMIT 100");
-// query para selecionar todos os campos da tabela usuários se $busca contiver na coluna nome ou na coluna email
-// % antes e depois de $busca serve para indicar que $busca por ser apenas parte da palavra ou frase
-// $busca é a variável que foi enviada pelo nosso formulário da página anterior
-$count = mysql_num_rows($sql);
-
-?>
-
 
 <div class="row">
           <div class="col-lg-12">
@@ -49,7 +24,6 @@ $count = mysql_num_rows($sql);
         </div><!-- /.row -->
 
 <div class="row">
-
 <div class="col-lg-4">
   <div class="panel panel-danger">
     <div class="panel-heading"> 
@@ -57,7 +31,7 @@ $count = mysql_num_rows($sql);
     </div>
     <div class="panel-body">
       <div class="table-responsive">
-        <table class="table table-bordered table-hover table-striped tablesorter">
+        <table class="table table-bordered table-hover table-striped">
           <thead>
             <tr>
               <th>Mês</th>
@@ -68,7 +42,7 @@ $count = mysql_num_rows($sql);
           <tbody>
             
           <td><?php echo $contaspagar->getNomeMes(date('m')) ?></td>
-          <td><?php echo formata_dinheiro($contaspagar->contasMes()) ?></td>
+          <td><?php echo $contaspagar->contasMes() ?></td>
 
 
           </tbody>
@@ -86,7 +60,7 @@ $count = mysql_num_rows($sql);
     </div>
     <div class="panel-body">
       <div class="table-responsive">
-        <table class="table table-bordered table-hover table-striped tablesorter">
+        <table class="table table-bordered table-hover table-striped">
           <thead>
             <tr>
               <th>Mês</th>
@@ -96,7 +70,7 @@ $count = mysql_num_rows($sql);
           <tbody>
             
             <td><?php echo $contaspagar->getNomeMes(date('m', strtotime('+1 months'))) ?></td>
-            <td><?php echo formata_dinheiro($contaspagar->contasProximoMes()) ?></td>
+            <td><?php echo $contaspagar->contasProximoMes() ?></td>
 
 
           </tbody>
@@ -120,7 +94,7 @@ $count = mysql_num_rows($sql);
               </div>
               <div class="panel-body">
                 <div class="table-responsive">
-                  <table class="table table-bordered table-hover table-striped tablesorter">
+                  <table class="table table-bordered table-hover table-striped">
                     <thead>
                       <tr>
                         <th>Fornecedor</th>
@@ -132,56 +106,30 @@ $count = mysql_num_rows($sql);
                       </tr>
                     </thead>
                     <tbody>
-<?php
-while($res=mysql_fetch_array($sql)) {
-	$id = $res[0];
-	$fornecedor = $res[1];
-	$numero_documento = $res[2];
-	$data = $res[3];
-	$data = implode("/",array_reverse(explode("-",$data)));
-	$valor = $res[4];
-	$status = $res[5];
-	$i++;
-	$css = ($i % 2 == 0) ? 'style="background: #FFF;"' : 'style="background: #e7e7e7;"';
-	
-	// Busca valores do dia
-	//$dia_hoje=date('d');
-	$qr=mysql_query("SELECT SUM(valor) as total FROM contas_pagar WHERE data='$hoje'");
-	$row=mysql_fetch_array($qr);
-	$saidas_dia=$row['total'];
-
-	//$despesas_dia=$hoje;
-?>
-
-<tr <?php echo $css ?>> 
-	<td><?php echo $fornecedor; ?> </td>
-	<td><?php echo $numero_documento; ?></td>
-    <td><?php echo $data; ?></td>
-    <td><?php echo formata_dinheiro($valor); ?></td>
-    <td>
-<?php
-
-if($status == "pago"):
-    echo '<span class="label label-success">Pago</span>';
-else:
-    echo '<span class="label label-danger">Aberto</span>';
-endif;
-
-?>
-</td>
-
-    <!-- <td class=centro><?php echo $hoje; ?></td>-->
-    <td><a class='iframe' href="alterar_boleto.php?id=<?php echo $id ?>"><img src=images/editar.png width="24" height="24"/></a></td>
+                      <?php foreach ($dados as $reg): ?>
+                        <tr> 
+                            <td><?php echo $reg->fornecedor; ?> </td>
+                            <td><?php echo $reg->numero_documento; ?></td>
+                            <td><?php echo implode("/",array_reverse(explode("-",$reg->data))); ?></td>
+                            <td><?php echo $reg->valor; ?></td>
+                            <td>
+                            <?php
+                              if($status == "pago"):
+                                echo '<span class="label label-success">Pago</span>';
+                              else:
+                                echo '<span class="label label-danger">Aberto</span>';
+                              endif;?>
+                            </td>
+   <!-- <td class=centro><?php echo $hoje; ?></td>-->
+    <td><a class='iframe' href="alterar_boleto.php?id=<?php echo $reg->id; ?>"><img src=images/editar.png width="24" height="24"/></a></td>
 </tr>
-<?php
-}
-?>
+<?php endforeach;?>
 
                     </tbody>
                   </table>
                 </div>
                 <div class="text-right">
-                <span style="font-size:18px; color:#F00">Total do dia: <?php echo formata_dinheiro($saidas_dia)?></span>
+                <span style="font-size:18px; color:#F00">Total do dia: <?php echo $contaspagar->totalContasHoje() ?></span>
                   <!-- <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a> -->
                 </div>
               </div>

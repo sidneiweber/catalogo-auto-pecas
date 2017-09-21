@@ -16,7 +16,8 @@ if ($_POST) {
     // set product property values
     $contaspagar->fornecedor = $_POST['fornecedor'];
     $contaspagar->numero_documento = $_POST['numero_documento'];
-    $contaspagar->data = $_POST['data'];
+    //$contaspagar->data = $_POST['data'];
+    $contaspagar->data  = implode("-",array_reverse(explode("/",$_POST['data'])));
     $contaspagar->valor = $_POST['valor'];
     $contaspagar->status = $_POST['status'];
 
