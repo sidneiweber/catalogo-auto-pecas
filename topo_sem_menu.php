@@ -4,16 +4,6 @@ $conexao = mysql_connect("$local", "$usuario", "$senha")
 $db = mysql_select_db("$selecione")
            or die (mysql_error());
 ?>
-<?php
-$sql = mysql_query("SELECT codigo, produto, descricao, estoque, codigo_original, codigo_paralelo, preco, promocao, foto 
-				   FROM produtos
-				   ORDER BY produto,descricao ASC
-				   LIMIT 10")
-       or die(mysql_error());
-if (@mysql_num_rows($sql) == 0) {
-	echo "<h1>Nenhum resultado encontrato</h1>";
-}
-?>
 
 <?php
 
