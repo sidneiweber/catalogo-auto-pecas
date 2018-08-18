@@ -18,7 +18,7 @@ $dados = $produto->getUltimosProdutos();
 <div class="row">
     <div class="col-lg-12">
         <ol class="breadcrumb">
-            <li class="active"><i class="fa fa-dashboard"></i>Bem vindo</li>
+            <li class="active"><i class="fa fa-dashboard"></i>Bem vindo!</li>
         </ol>
     </div>
 </div><!-- /.row -->
