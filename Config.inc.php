@@ -5,7 +5,6 @@
 //define('USER', 'root');
 //define('PASS', 'bolacha');
 //define('DBSA', 'catalogo');
-
 ## Caminhos diretorios
 //define('DS', DIRECTORY_SEPARATOR);
 //define('ROOT', dirname(__DIR__));
