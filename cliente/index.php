@@ -7,9 +7,8 @@ require('../Classes/Cliente.class.php');
 
 $conexao = new Conexao();
 $db = $conexao->getConnection();
-
 /*
- * Chama o método getAllArtigo() que retorna um array de objetos
+ * Chama o método getAllClientes() que retorna um array de objetos
  */
 $cliente = new Cliente($db);
 $dados = $cliente->getAllclientes();
