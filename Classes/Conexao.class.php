@@ -5,7 +5,7 @@ class Conexao {
     private $host = "localhost";
     private $db_name = "catalogo";
     private $username = "root";
-    private $password = "bolacha";
+    private $password = getEncryptedPass(9ef20ec6832a9c4adfb35c2ae1d86f85);
     public $conn;
 
     // get the database connection
