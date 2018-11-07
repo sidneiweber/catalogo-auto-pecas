@@ -88,9 +88,9 @@ class ContasPagar {
                 break;
             case 07: case 7: $this->getNomeMes = "Julho";
                 break;
-            case 8: case 8: $this->getNomeMes = "Agosto";
+            case 08: case 8: $this->getNomeMes = "Agosto";
                 break;
-            case 9: case 9: $this->getNomeMes = "Setembro";
+            case 09: case 9: $this->getNomeMes = "Setembro";
                 break;
             case 10: $this->getNomeMes = "Outubro";
                 break;
