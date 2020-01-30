@@ -2,17 +2,22 @@ name: CI
 
 on:
   push:
-
+    branches:
+      - master
   pull_request:
     branches:
     - master
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    if: github.ref != 'refs/heads/master'
     steps:
-    - name: Pull request merged
-      if: github.action == 'closed' && github.pull_request.merged == 'true'
-      run: echo merged
+      - name: 'Checkout'
+        run: Run Build
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - name: 'Checkout'
+        run: Run deploy
