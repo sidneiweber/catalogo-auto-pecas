@@ -14,10 +14,10 @@ jobs:
     if: github.ref != 'refs/heads/master'
     steps:
       - name: 'Checkout'
-        run: Run Build
+        run: echo "Run Build"
   deploy:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     steps:
       - name: 'Checkout'
-        run: Run deploy
+        run: echo "Run deploy"
