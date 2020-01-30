@@ -19,7 +19,7 @@ jobs:
         run: echo "Run Build"
   verify:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/teste'
+    if: github.ref == 'refs/heads/develop'
     steps:
       - name: 'Verify'
         run: echo "Run verify"
