@@ -7,17 +7,19 @@ on:
   pull_request:
     branches:
     - master
+  pull_request_review_comment:
+    types: [created, edited]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/master'
     steps:
       - name: 'Checkout'
         run: echo "Run Build"
+
   verify:
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/master'
+    if: github.ref == 'refs/heads/teste'
     steps:
       - name: 'Checkout'
         run: echo "Run verify"
