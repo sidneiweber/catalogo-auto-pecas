@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
     - master
-  pull_request_review_comment:
+  issue_comment:
     types: [created, edited]
 
 jobs:
@@ -21,11 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/teste'
     steps:
-      - name: 'Checkout'
+      - name: 'Verify'
         run: echo "Run verify"
   deploy:
     runs-on: ubuntu-latest
     if: github.event.comment.body == 'OK to deploy'
     steps:
-      - name: 'Checkout'
+      - name: 'Deploy'
         run: echo "Run deploy"
