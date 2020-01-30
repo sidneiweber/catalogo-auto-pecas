@@ -12,6 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: github.ref != 'refs/heads/master'
+    if: github.ref != 'refs/heads/dev'
     steps:
       - name: 'Checkout'
         run: echo "Run Build"
