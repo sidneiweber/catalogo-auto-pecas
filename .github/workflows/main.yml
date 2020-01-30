@@ -12,13 +12,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: github.ref != 'refs/heads/master'
-    if: github.ref != 'refs/heads/dev'
     steps:
       - name: 'Checkout'
         run: echo "Run Build"
-  deploy:
+  verify:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
+    steps:
+      - name: 'Checkout'
+        run: echo "Run verify"
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event.comment.body == 'OK to deploy'
     steps:
       - name: 'Checkout'
         run: echo "Run deploy"
