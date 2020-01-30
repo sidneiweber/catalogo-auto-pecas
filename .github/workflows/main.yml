@@ -13,11 +13,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/teste' || github.ref != 'refs/heads/master'
+    if: github.ref != 'refs/heads/develop' && github.ref != 'refs/heads/master'
     steps:
       - name: 'Checkout'
         run: echo "Run Build"
-
   verify:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/teste'
