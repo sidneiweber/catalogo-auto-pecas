@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Classe para operações CRUD na tabela Produto
+ * Classe para operações CRUD na tabela Produto Teste
  */
 
 Class Produto {
