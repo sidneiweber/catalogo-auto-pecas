@@ -5,6 +5,7 @@ on:
     branches:
       - "*"
   pull_request:
+    types: [closed]
     branches:
     - master
   issue_comment:
@@ -24,7 +25,7 @@ jobs:
         run: echo "Run verify"
   deploy:
     runs-on: ubuntu-latest
-    if: github.event.comment.body == 'OK to deploy'
+    if: github.event.comment.body == 'OK to deploy' && github.ref == 'refs/heads/master'
     steps:
       - name: 'Deploy'
         run: echo "Run deploy"
