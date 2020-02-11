@@ -2,14 +2,8 @@ name: CI
 
 on:
   push:
-    paths:
-    - 'Classes/**'
     branches:
       - "*"
-  pull_request:
-    types: [closed]
-    branches:
-    - master
   issue_comment:
     types: [created, edited]
 
