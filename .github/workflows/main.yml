@@ -19,6 +19,12 @@ jobs:
     steps:
       - name: 'Verify'
         run: echo "Run verify"
+  deploy_dev:
+    runs-on: ubuntu-latest
+    if: github.event.comment.body == 'OK to dev'
+    steps:
+      - name: 'Deploy'
+        run: echo "Run deploy"
   deploy:
     runs-on: ubuntu-latest
     if: github.event.comment.body == 'OK to deploy' && github.ref == 'refs/heads/master'
